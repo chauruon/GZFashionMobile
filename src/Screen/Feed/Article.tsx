@@ -12,11 +12,11 @@ import {
   FlatList,
 } from "react-native";
 
-export const Settings = () => {
+export const Article = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Settings</Text>
+        <Text>Article</Text>
       </View>
     </SafeAreaView>
   );
