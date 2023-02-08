@@ -46,9 +46,9 @@ export const TabNavigation =() => {
           let iconName;
           const isFocused = state.index === index;
           if (route.name === "Home") {
-            iconName = require("../assets/icons/icon_home.png")
+            iconName = require("../assets/icons/iconHome.png")
           } else if (route.name === "Settings") {
-            iconName = require("../assets/icons/icon_settings.png")
+            iconName = require("../assets/icons/iconSettings.png")
           }
 
           const onPress = () => {

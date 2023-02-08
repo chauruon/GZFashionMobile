@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { Banner } from "../../Component/Banner/Banner";
 import Carousel, { Pagination } from "react-native-snap-carousel"
-import { COLOR, SIZE } from "../../theme";
+import { COLOR, SHADOWS, SIZE, TEXT } from "../../theme";
 import axios from "axios";
 import { HeaderHome } from "../../Component/Header/HeaderHome";
 import { DrawerNavigator } from "../Drawer";
@@ -34,23 +34,34 @@ export const Home = () => {
     {
       id:1,
       image:food1,
+      title:"ksadjfhoajkadkd",
     },
     {
       id:2,
       image:food2,
+      title:"ksadjfhoajkadkd",
     },
     {
       id:3,
       image:food3,
+      title:"ksadjfhoajkadkd",
     },
     {
       id:4,
       image:food4,
+      title:"ksadjfhoajkadkd",
     },
     {
       id:5,
       image:food5,
+      title:"ksadjfhoajkadkd",
     },
+    {
+      id:6,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
+   
   ];
 
   useEffect(()=>{
@@ -64,6 +75,36 @@ export const Home = () => {
     }
   }
 
+
+  const _menuList = ({ item, index }:{item:any,index:number}) => {
+    return(
+      <TouchableOpacity>
+        <View style={{
+          // backgroundColor:"red",
+          flexWrap:"wrap",
+          margin:4,
+          width:70,
+        }}>
+          <View style={{alignItems:"center",width:65, ...SHADOWS.sh,}}>
+            <Image style={{
+              height:35,
+              width:35,
+            }}
+              source={item.image}/>
+            
+            <Text numberOfLines={2} style={{
+              textAlign:"center",
+              ...TEXT.fz12,
+              ...TEXT.medium,
+            }}>
+              {item.title}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+}
+
   const renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
       <View
@@ -75,13 +116,18 @@ export const Home = () => {
           justifyContent:"center",
         }}
       >
-        <Image style={{width:"100%", height:"100%",resizeMode:'contain'}} source={{ uri: `http://192.168.100.137:8700${item.image}` }} />
+        {dataBanner.length === 0 ?
+          <Image style={{width:"100%", height:"100%",resizeMode:'contain'}} source={item.image} />
+          :
+          <Image style={{width:"100%", height:"100%",resizeMode:'contain'}} source={{ uri: `http://192.168.100.137:8700${item.image}` }} />
+        }
       </View>
     );
   };
+
   return (
     <SafeAreaView style={{backgroundColor:COLOR.white,flex:1}}>
-      {/* <HeaderHome label="Home"/> */}
+      <HeaderHome />
 
       {/* Carousel */}
       <View style={{ height: SIZE.height/4,justifyContent:"center", alignItems:"center"}}>
@@ -89,14 +135,14 @@ export const Home = () => {
           layout={"default"}
           ref={ref}
           autoplay
-          data={dataBanner}
+          data={dataBanner.length === 0 ? carouselItems : dataBanner}
           sliderWidth={300}
           itemWidth={300}
           renderItem={renderItem}
           loop
           onSnapToItem = { index => setActiveIndex(index)} />
         <Pagination
-          dotsLength={dataBanner.length}
+          dotsLength={dataBanner.length === 0 ? carouselItems.length : dataBanner.length}
           activeDotIndex={activeIndex}
           containerStyle={styles.paginationContainer}
           dotStyle={styles.dotStyle}
@@ -107,9 +153,30 @@ export const Home = () => {
           
       </View>
 
-      {/* Menu */}
-      <View>
 
+      {/* Menu */}
+      <View 
+      // style={{...SHADOWS.sh,}}
+      >
+        <ScrollView 
+          horizontal 
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          scrollEnabled={true}>
+          <FlatList
+            key={carouselItems.length + "cate"}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            contentContainerStyle={{backgroundColor:'red',flexWrap:"wrap"}}
+            // horizontal={carouselItems.length > 5 ? false : true}
+            // numColumns={carouselItems.length > 5 ? Math.ceil(carouselItems.length / 2) : 1}
+            keyExtractor={(item,index) => index.toString()}
+            data={carouselItems}
+            scrollEnabled={false}
+            renderItem={_menuList}
+          />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
