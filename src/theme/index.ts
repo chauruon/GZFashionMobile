@@ -136,16 +136,14 @@ export const TEXT = StyleSheet.create({
 });
 export const SHADOWS = StyleSheet.create({
   sh: {
-    // backgroundColor: "#FFFFFF",
-    // shadowColor: "rgba(0, 38, 101, 0.1)",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 1.22,
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
 
-    elevation: 2,
+    elevation: 4,
   },
 });

@@ -61,7 +61,41 @@ export const Home = () => {
       image:food1,
       title:"ksadjfhoajkadkd",
     },
-   
+    {
+      id:7,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:8,
+      image:food5,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:9,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:10,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:11,
+      image:food5,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:12,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:13,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
   ];
 
   useEffect(()=>{
@@ -77,15 +111,20 @@ export const Home = () => {
 
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
-    return(
-      <TouchableOpacity>
+    return (
+      <TouchableOpacity style={{flexDirection:"row",}} activeOpacity={0.8} key={`${index}-cart`}>
         <View style={{
-          // backgroundColor:"red",
-          flexWrap:"wrap",
           margin:4,
-          width:70,
+          width:SIZE.width/7 + 1
         }}>
-          <View style={{alignItems:"center",width:65, ...SHADOWS.sh,}}>
+          <View style={{
+            alignItems:"center",
+            width:"100%",
+            padding:5,
+            borderRadius:9,
+            ...SHADOWS.sh,
+            backgroundColor: COLOR.white,
+          }}>
             <Image style={{
               height:35,
               width:35,
@@ -96,6 +135,7 @@ export const Home = () => {
               textAlign:"center",
               ...TEXT.fz12,
               ...TEXT.medium,
+              width:"100%",
             }}>
               {item.title}
             </Text>
@@ -155,25 +195,57 @@ export const Home = () => {
 
 
       {/* Menu */}
-      <View 
-      // style={{...SHADOWS.sh,}}
-      >
+      <View>
         <ScrollView 
-          horizontal 
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          scrollEnabled={true}>
+          horizontal
+          scrollEnabled={true}
+          contentContainerStyle={{
+            // flexDirection:"row",
+            // flexWrap:"wrap",
+            // height:90,
+            backgroundColor:"red"
+          }}
+          >
+          {/* {carouselItems.map((item,index) => {
+              return (
+                <TouchableOpacity activeOpacity={0.8} key={`${index}-cart`}>
+                  <View style={{
+                    // backgroundColor:"#FCCB00",
+                    flexWrap:"wrap",
+                    margin:4,
+                    width:SIZE.width/7 + 1
+                  }}>
+                    <View style={{
+                      alignItems:"center",
+                      width:"100%",
+                      padding:5,
+                      borderRadius:9,
+                      ...SHADOWS.sh,
+                      backgroundColor: COLOR.white,
+                    }}>
+                      <Image style={{
+                        height:35,
+                        width:35,
+                      }}
+                        source={item.image}/>
+                      
+                      <Text numberOfLines={2} style={{
+                        textAlign:"center",
+                        ...TEXT.fz12,
+                        ...TEXT.medium,
+                        width:"100%",
+                      }}>
+                        {item.title}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )
+          })} */}
           <FlatList
-            key={carouselItems.length + "cate"}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            horizontal
-            contentContainerStyle={{backgroundColor:'red',flexWrap:"wrap"}}
-            // horizontal={carouselItems.length > 5 ? false : true}
-            // numColumns={carouselItems.length > 5 ? Math.ceil(carouselItems.length / 2) : 1}
-            keyExtractor={(item,index) => index.toString()}
+            numColumns={6}
             data={carouselItems}
-            scrollEnabled={false}
+            keyExtractor={(item,index) => index.toString()}
             renderItem={_menuList}
           />
         </ScrollView>
