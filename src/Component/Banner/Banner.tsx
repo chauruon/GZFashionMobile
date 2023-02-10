@@ -15,9 +15,9 @@ import { COLOR, SIZE, TEXT,SHADOWS } from '../../theme';
 
 interface Props {
   data: Array<Object>,
-  heightImage?: Number,
-  height?: Number ,
-  heightBanner?: Number,
+  heightImage?: Number | undefined,
+  height?: Number | undefined,
+  heightBanner?: Number | undefined,
   ImageBannerStyle?: StyleProp<ViewStyle>,
   imageBelowStyle?: StyleProp<ViewStyle>,
 }
@@ -63,7 +63,7 @@ export const Banner = ({
 
   const styles = styleWithProps( );
   return (
-    <View style={{height:SIZE.height/2.9 || height,}}>
+    <View style={{height: height | SIZE.height/2.9,}}>
       <FlatList 
         data={data}
         horizontal
@@ -80,7 +80,7 @@ export const Banner = ({
 
         renderItem={({item,index})=>{
           return(
-            <View style={[ImageBannerStyle,{height: heightBanner ||  200,width:SIZE.width,}]}>
+            <View style={[ImageBannerStyle,{height: heightBanner ||  200, width:SIZE.width,}]}>
               <Image style={{height: heightBanner || 200, width:SIZE.width, resizeMode:"contain",}} source={item}/>
             </View>
           );

@@ -12,11 +12,11 @@ import {
   FlatList,
 } from "react-native";
 import { Banner } from "../../Component/Banner/Banner";
-import Carousel, { Pagination } from "react-native-snap-carousel"
 import { COLOR, SHADOWS, SIZE, TEXT } from "../../theme";
 import axios from "axios";
 import { HeaderHome } from "../../Component/Header/HeaderHome";
 import { DrawerNavigator } from "../Drawer";
+import { BannerCarousel } from "../../Component/Carousel/BannerCarousel";
 
 const food1 = require("../../assets/image/food1.jpg");
 const food2 = require("../../assets/image/food2.jpg");
@@ -27,8 +27,6 @@ const food5 = require("../../assets/image/food5.jpg");
 
 export const Home = () => {
   const ref = React.createRef<any>();
-  const [activeIndex,setActiveIndex] = useState(0);
-  const [dataBanner,setDataBanner] = useState([]);
 
   const carouselItems= [
     {
@@ -51,63 +49,8 @@ export const Home = () => {
       image:food4,
       title:"ksadjfhoajkadkd",
     },
-    {
-      id:5,
-      image:food5,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:6,
-      image:food1,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:7,
-      image:food1,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:8,
-      image:food5,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:9,
-      image:food1,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:10,
-      image:food1,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:11,
-      image:food5,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:12,
-      image:food1,
-      title:"ksadjfhoajkadkd",
-    },
-    {
-      id:13,
-      image:food1,
-      title:"ksadjfhoajkadkd",
-    },
   ];
 
-  useEffect(()=>{
-    get();
-  },[])
-  const get = async () => {
-    const data = await axios.get("http://192.168.100.137:8700/api/v1/banner_notify");
-    // console.log('data: ', data.data.banner);
-    if(data.data){
-      setDataBanner(data.data.banner);
-    }
-  }
 
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
@@ -143,69 +86,17 @@ export const Home = () => {
         </View>
       </TouchableOpacity>
     );
-}
-
-  const renderItem = ({ item, index }: { item: any; index: number }) => {
-    return (
-      <View
-        style={{
-          height: "100%",
-          width:SIZE.width,
-          alignItems:"center",
-          aspectRatio:3/2,
-          justifyContent:"center",
-        }}
-      >
-        {dataBanner.length === 0 ?
-          <Image style={{width:"100%", height:"100%",resizeMode:'contain'}} source={item.image} />
-          :
-          <Image style={{width:"100%", height:"100%",resizeMode:'contain'}} source={{ uri: `http://192.168.100.137:8700${item.image}` }} />
-        }
-      </View>
-    );
-  };
+  }
 
   return (
     <SafeAreaView style={{backgroundColor:COLOR.white,flex:1}}>
       <HeaderHome />
-
       {/* Carousel */}
-      <View style={{ height: SIZE.height/4,justifyContent:"center", alignItems:"center"}}>
-        <Carousel
-          layout={"default"}
-          ref={ref}
-          autoplay
-          data={dataBanner.length === 0 ? carouselItems : dataBanner}
-          sliderWidth={300}
-          itemWidth={300}
-          renderItem={renderItem}
-          loop
-          onSnapToItem = { index => setActiveIndex(index)} />
-        <Pagination
-          dotsLength={dataBanner.length === 0 ? carouselItems.length : dataBanner.length}
-          activeDotIndex={activeIndex}
-          containerStyle={styles.paginationContainer}
-          dotStyle={styles.dotStyle}
-          inactiveDotStyle={styles.inactiveDotStyle}
-          inactiveDotOpacity={0.4}
-          inactiveDotScale={0.8}
-        />
-          
-      </View>
-
+      <BannerCarousel/>
 
       {/* Menu */}
-      <View>
-        <ScrollView 
-          horizontal
-          scrollEnabled={true}
-          contentContainerStyle={{
-            // flexDirection:"row",
-            // flexWrap:"wrap",
-            // height:90,
-            backgroundColor:"red"
-          }}
-          >
+      <View style={{marginTop:10,}}>
+        <ScrollView horizontal scrollEnabled={true}>
           {/* {carouselItems.map((item,index) => {
               return (
                 <TouchableOpacity activeOpacity={0.8} key={`${index}-cart`}>
@@ -249,6 +140,11 @@ export const Home = () => {
             renderItem={_menuList}
           />
         </ScrollView>
+      </View>
+
+      {/* Body */}
+      <View style={{marginTop:10,}}>
+        <Text>dsjhfgdfjhsgjklf</Text>
       </View>
     </SafeAreaView>
   );

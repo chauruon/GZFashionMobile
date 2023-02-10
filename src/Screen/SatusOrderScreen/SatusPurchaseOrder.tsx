@@ -12,11 +12,11 @@ import {
   FlatList,
 } from "react-native";
 
-export const Article = () => {
+export const SatusPurchaseOrder = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Article</Text>
+        <Text>SatusPurchaseOrder</Text>
       </View>
     </SafeAreaView>
   );
