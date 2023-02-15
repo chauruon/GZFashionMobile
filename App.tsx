@@ -10,7 +10,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TabNavigation } from './src/Screen/TabNavigation';
 import { DrawerNavigator } from './src/Screen/Drawer';
-
+import {Provider} from 'react-redux';
+import store from './src/store/store';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,13 +28,11 @@ const stackOption = {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      {/* <Stack.Navigator>
-        <Stack.Screen name="TabNavigation" component={TabNavigation} options={screenOptions}/>
-      </Stack.Navigator> */}
-      <DrawerNavigator/>
-
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <DrawerNavigator/>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

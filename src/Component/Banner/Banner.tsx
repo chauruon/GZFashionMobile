@@ -15,9 +15,9 @@ import { COLOR, SIZE, TEXT,SHADOWS } from '../../theme';
 
 interface Props {
   data: Array<Object>,
-  heightImage?: Number | undefined,
-  height?: Number | undefined,
-  heightBanner?: Number | undefined,
+  heightImage?: number | undefined,
+  height?: number | undefined,
+  heightBanner?: number | undefined,
   ImageBannerStyle?: StyleProp<ViewStyle>,
   imageBelowStyle?: StyleProp<ViewStyle>,
 }
@@ -99,7 +99,7 @@ export const Banner = ({
               <TouchableOpacity onPress={() => changeIndex(index)}>
                 <Image 
                   style={ stepImage.current[0]?.index === index  ?
-                    [styles.unActiveBtnItemImg,{borderColor: COLOR.error,...imageBelowStyle,} ] 
+                    [styles.unActiveBtnItemImg,{borderColor: COLOR.error,imageBelowStyle,} ] 
                   :
                     styles.unActiveBtnItemImg} source={item}/>
               </TouchableOpacity>
