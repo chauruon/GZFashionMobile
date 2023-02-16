@@ -1,25 +1,19 @@
 import { call, put, takeLatest, takeEvery, all } from "redux-saga/effects";
-import { getUpdateTauService } from "../api";
-import { typeActionTown } from "../types/typeActionTown";
+import { getBannerNotify } from "../api";
+import { typeAcctionBanner } from "../types/typeAcctionBanner";
 
-function* callUpdateTau(action): Generator<any, void, unknown> {
+
+function* callBannerNotify(action:any): Generator<any, void, unknown>{
   try {
-    const getApiUpdateTau = yield getUpdateTauService(action.data);
-    yield put({
-      type: typeActionTown.SUCCESS_UPDATE_TAU,
-      getApiUpdateTau: getApiUpdateTau?.data,
-    });
+    const bannerNotify = yield getBannerNotify();
+    console.log('bannerNotify: ', bannerNotify);
+    yield put({type: "BANNER_SUCCESS", bannerNotify});
   } catch (e) {
-    let err = e?.response;
-    const result = checkToken(err)
-    if (result) {
-      yield put({ type: typeActionTown.SET_EXPIRED_TOKEN, data: true });
-    } else {
-      yield put({ type: typeActionTown.ERROR_UPDATE_TAU,getApiUpdateTau: err?.data });
-    }
+    console.log('e: ', e);
+    
   }
 }
 
-export function* getUpdateTauAction() {
-  yield takeLatest(typeActionTown.UPDATE_TAU, callUpdateTau);
+export function* BannerNotify() {
+  yield takeLatest(typeAcctionBanner.BANNER_SUCCESS, callBannerNotify);
 }

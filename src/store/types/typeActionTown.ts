@@ -156,4 +156,5 @@ export const typeActionTown = {
 
   // SUCCESS_UPDATE_ENERGY : "SUCCESS_UPDATE_ENERGY",
   // ERROR_UPDATE_ENERGY : "ERROR_UPDATE_ENERGY",
+  
 };

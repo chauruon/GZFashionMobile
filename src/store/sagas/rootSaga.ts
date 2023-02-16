@@ -1,9 +1,9 @@
 import { all, fork } from "redux-saga/effects";
-import { getUpdateTauAction } from "./update";
+import { BannerNotify } from "./update";
 
 export default function* rootSaga() {
   yield all([
-    getUpdateTauAction,
+    BannerNotify,
     // getUpdateTauAction1,
     // getUpdateTauAction2,
     // getUpdateTauAction3,

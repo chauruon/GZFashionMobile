@@ -17,7 +17,6 @@ import axios from "axios";
 import { HeaderHome } from "../../Component/Header/HeaderHome";
 import { DrawerNavigator } from "../Drawer";
 import { BannerCarousel } from "../../Component/Carousel/BannerCarousel";
-
 const food1 = require("../../assets/image/food1.jpg");
 const food2 = require("../../assets/image/food2.jpg");
 const food3 = require("../../assets/image/food3.jpg");
@@ -50,7 +49,6 @@ export const Home = () => {
       title:"ksadjfhoajkadkd",
     },
   ];
-
 
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
