@@ -1,8 +1,15 @@
 import axios from "axios";
 import * as configs from "../../configs"
-// import CryptoJS from "react-native-crypto-js";
-console.log('configs.URL_API: ', configs.URL_API);
 
-export const getBannerNotify = () => {
-  return axios.get(`${configs.URL_API}banner_notify` );
+
+export const getBannerNotify = async () => {
+  return await axios.get(`${configs.URL_API}banner_notify` );
 };
+
+// export const getKycAdCount = async (userId, token) => {
+//   return axios.post(`${configs.API_KYC_CROWD}/kyc/kyc-ad-count`, {userId, token});
+// };
+
+// export const getOfferwallInfo = async (userId, token) => {
+//   return axios.post(`${configs.API_KYC_CROWD}/kyc/offerwall-rewards`, {userId, token});
+// };

@@ -1,13 +1,20 @@
 import { typeAcctionBanner } from "../types/typeAcctionBanner";
 
-const initialState = {};
+export interface ActionBanner{
+  type: string;
+  payload: any;
+}
 
-export default (state = initialState, action:any)=>{
+const initialState = {
+  banner: null,
+};
+
+export default (state = initialState, action:ActionBanner)=>{
+  console.log('BANNER_SUCCESS action: ', action);
   switch (action.type) {
-    case typeAcctionBanner.BANNER_SUCCESS:
+    case typeAcctionBanner.GET_BANNER_SUCCESS:
       return {
-        ...state,
-        ...action.payload,
+        banner: action.payload,
       };
     default:
       return state;

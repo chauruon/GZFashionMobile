@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import FetchAction from "./FetchAction";
+import tong from "./tong";
 
 const rootReducer = combineReducers({
-  FetchAction: FetchAction,
+  tong: tong,
   // FetchAction1: FetchAction1,
   // FetchAction2: FetchAction2,
   // FetchActio3: FetchAction3,
