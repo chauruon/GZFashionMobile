@@ -12,29 +12,25 @@ import {
   FlatList,
 } from "react-native";
 import { Banner } from "../../Component/Banner/Banner";
-import { COLOR, SHADOWS, SIZE, TEXT } from "../../theme";
+import {COLOR, SHADOWS, SIZE, TEXT } from "../../theme"
 import axios from "axios";
 import { HeaderHome } from "../../Component/Header/HeaderHome";
 import { DrawerNavigator } from "../Drawer";
 import { BannerCarousel } from "../../Component/Carousel/BannerCarousel";
+import { useDispatch, useSelector } from "react-redux";
+
 const food1 = require("../../assets/image/food1.jpg");
 const food2 = require("../../assets/image/food2.jpg");
 const food3 = require("../../assets/image/food3.jpg");
 const food4 = require("../../assets/image/food4.jpg");
 const food5 = require("../../assets/image/food5.jpg");
 
-import { getBannerNotify } from "../../store/api";
-import BannerNotify from "../../store/reducers/BannerNotify";
-// import { BannerNotify } from "../../store/sagas/update";
-import { useSelector, useDispatch } from "react-redux";
-import { tong } from "../../store/actions/tong";
-import { FetchBannerNotify } from "../../store/actions/banner";
 
 export const Home = () => {
   const ref = React.createRef<any>();
   const [counter,setCounter] = useState(0);
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.tong.giaTri)
+  const value = useSelector((state:any) => state.tong.giaTri)
   // console.log('value: ', value);
   const carouselItems= [
     {
@@ -57,11 +53,29 @@ export const Home = () => {
       image:food4,
       title:"ksadjfhoajkadkd",
     },
+    {
+      id:5,
+      image:food1,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:6,
+      image:food2,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:7,
+      image:food3,
+      title:"ksadjfhoajkadkd",
+    },
+    {
+      id:8,
+      image:food4,
+      title:"ksadjfhoajkadkd",
+    },
   ];
 
-  useEffect(()=>{
-    dispatch(FetchBannerNotify())
-  },[])
+
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
     return (
@@ -104,36 +118,9 @@ export const Home = () => {
       {/* Carousel */}
       <BannerCarousel/>
 
-      
-      <View style={{width:"100%",flexDirection:"row",justifyContent:"space-around",paddingTop:10}}>
-        <TouchableOpacity style={{
-          height:40,
-          width:40,
-          borderRadius:10,
-          justifyContent:"center",
-          alignItems:"center",
-          backgroundColor:"red",
-          }} onPress={() => dispatch(tong(value + 1))}>
-          <Text>+</Text>
-        </TouchableOpacity>
-
-        <Text style={{borderWidth:0.5,width:80,borderRadius:10,textAlign:"center",textAlignVertical:"center"}}>{value}</Text>
-        
-        <TouchableOpacity style={{
-          height:40,
-          width:40,
-          borderRadius:10,
-          justifyContent:"center",
-          alignItems:"center",
-          backgroundColor:"red",
-          }}>
-          <Text>-</Text>
-        </TouchableOpacity>
-      </View>
-
       {/* Menu */}
       <View style={{marginTop:10,}}>
-        {/* <ScrollView horizontal scrollEnabled={true}> */}
+        <ScrollView horizontal scrollEnabled={true}>
           {/* {carouselItems.map((item,index) => {
               return (
                 <TouchableOpacity activeOpacity={0.8} key={`${index}-cart`}>
@@ -170,19 +157,20 @@ export const Home = () => {
                 </TouchableOpacity>
               )
           })} */}
-          {/* <FlatList
+          <FlatList
             numColumns={6}
             data={carouselItems}
+            scrollEnabled={true}
             keyExtractor={(item,index) => index.toString()}
             renderItem={_menuList}
           />
-        </ScrollView> */}
+        </ScrollView>
       </View>
 
       {/* Body */}
-      {/* <View style={{marginTop:10,}}>
+      <View style={{marginTop:10,}}>
         <Text>dsjhfgdfjhsgjklf</Text>
-      </View> */}
+      </View>
     </SafeAreaView>
   );
 }
