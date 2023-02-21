@@ -12,20 +12,21 @@ import {
   FlatList,
 } from "react-native";
 import { Banner } from "../../Component/Banner/Banner";
-import { COLOR, SHADOWS, SIZE, TEXT } from "../../theme";
+import {COLOR, SHADOWS, SIZE, TEXT } from "../../theme"
 import axios from "axios";
 import { HeaderHome } from "../../Component/Header/HeaderHome";
 import { DrawerNavigator } from "../Drawer";
 import { BannerCarousel } from "../../Component/Carousel/BannerCarousel";
+import { useDispatch, useSelector } from "react-redux";
+import { tong, tru } from "../../store/actions/tong";
+import { FetchBannerNotify } from "../../store/actions/banner";
+
 const food1 = require("../../assets/image/food1.jpg");
 const food2 = require("../../assets/image/food2.jpg");
 const food3 = require("../../assets/image/food3.jpg");
 const food4 = require("../../assets/image/food4.jpg");
 const food5 = require("../../assets/image/food5.jpg");
 
-import { useSelector, useDispatch } from "react-redux";
-import { tong, tru } from "../../store/actions/tong";
-import { FetchBannerNotify } from "../../store/actions/banner";
 import { MenuTowRow } from "../../Component/Menu/MenuTowRow";
 
 export const Home = () => {
@@ -63,9 +64,7 @@ export const Home = () => {
     
   ];
 
-  useEffect(()=>{
-    dispatch(FetchBannerNotify())
-  },[])
+
 
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
