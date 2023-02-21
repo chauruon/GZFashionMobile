@@ -63,10 +63,7 @@ export const Home = () => {
     },
     
   ];
-
-
-
-
+  
   const _menuList = ({ item, index }:{item:any,index:number}) => {
     return (
       <TouchableOpacity style={{flexDirection:"row",}} activeOpacity={0.8} key={`${index}-cart`}>
