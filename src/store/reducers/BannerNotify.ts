@@ -9,8 +9,7 @@ const initialState = {
   banner: null,
 };
 
-export default (state = initialState, action:ActionBanner)=>{
-  console.log('BANNER_SUCCESS action: ', action);
+export default (state = initialState, action:any)=>{
   switch (action.type) {
     case typeAcctionBanner.GET_BANNER_SUCCESS:
       return {

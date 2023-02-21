@@ -23,18 +23,16 @@ const food3 = require("../../assets/image/food3.jpg");
 const food4 = require("../../assets/image/food4.jpg");
 const food5 = require("../../assets/image/food5.jpg");
 
-import { getBannerNotify } from "../../store/api";
-import BannerNotify from "../../store/reducers/BannerNotify";
-// import { BannerNotify } from "../../store/sagas/update";
 import { useSelector, useDispatch } from "react-redux";
-import { tong } from "../../store/actions/tong";
+import { tong, tru } from "../../store/actions/tong";
 import { FetchBannerNotify } from "../../store/actions/banner";
+import { MenuTowRow } from "../../Component/Menu/MenuTowRow";
 
 export const Home = () => {
   const ref = React.createRef<any>();
   const [counter,setCounter] = useState(0);
   const dispatch = useDispatch();
-  const value = useSelector((state) => state.tong.giaTri)
+  const value = useSelector((state: any) => state.tong.giaTri)
   // console.log('value: ', value);
   const carouselItems= [
     {
@@ -57,11 +55,18 @@ export const Home = () => {
       image:food4,
       title:"ksadjfhoajkadkd",
     },
+    {
+      id:5,
+      image:food3,
+      title:"ksadjfhoajkadkd",
+    },
+    
   ];
 
   useEffect(()=>{
     dispatch(FetchBannerNotify())
   },[])
+
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
     return (
@@ -100,89 +105,43 @@ export const Home = () => {
 
   return (
     <SafeAreaView style={{backgroundColor:COLOR.white,flex:1}}>
-      <HeaderHome />
-      {/* Carousel */}
-      <BannerCarousel/>
-
-      
-      <View style={{width:"100%",flexDirection:"row",justifyContent:"space-around",paddingTop:10}}>
-        <TouchableOpacity style={{
-          height:40,
-          width:40,
-          borderRadius:10,
-          justifyContent:"center",
-          alignItems:"center",
-          backgroundColor:"red",
-          }} onPress={() => dispatch(tong(value + 1))}>
-          <Text>+</Text>
-        </TouchableOpacity>
-
-        <Text style={{borderWidth:0.5,width:80,borderRadius:10,textAlign:"center",textAlignVertical:"center"}}>{value}</Text>
+        <HeaderHome />
         
-        <TouchableOpacity style={{
-          height:40,
-          width:40,
-          borderRadius:10,
-          justifyContent:"center",
-          alignItems:"center",
-          backgroundColor:"red",
-          }}>
-          <Text>-</Text>
-        </TouchableOpacity>
-      </View>
+        {/* Carousel */}
+        <BannerCarousel/>
+        
+        {/* <View style={{width:"100%",flexDirection:"row",justifyContent:"space-around",paddingTop:10}}>
+          <TouchableOpacity style={{
+            height:40,
+            width:40,
+            borderRadius:10,
+            justifyContent:"center",
+            alignItems:"center",
+            backgroundColor:"red",
+            }} onPress={() => dispatch(tong(value + 1))}>
+            <Text>+</Text>
+          </TouchableOpacity>
 
-      {/* Menu */}
-      <View style={{marginTop:10,}}>
-        {/* <ScrollView horizontal scrollEnabled={true}> */}
-          {/* {carouselItems.map((item,index) => {
-              return (
-                <TouchableOpacity activeOpacity={0.8} key={`${index}-cart`}>
-                  <View style={{
-                    // backgroundColor:"#FCCB00",
-                    flexWrap:"wrap",
-                    margin:4,
-                    width:SIZE.width/7 + 1
-                  }}>
-                    <View style={{
-                      alignItems:"center",
-                      width:"100%",
-                      padding:5,
-                      borderRadius:9,
-                      ...SHADOWS.sh,
-                      backgroundColor: COLOR.white,
-                    }}>
-                      <Image style={{
-                        height:35,
-                        width:35,
-                      }}
-                        source={item.image}/>
-                      
-                      <Text numberOfLines={2} style={{
-                        textAlign:"center",
-                        ...TEXT.fz12,
-                        ...TEXT.medium,
-                        width:"100%",
-                      }}>
-                        {item.title}
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              )
-          })} */}
-          {/* <FlatList
-            numColumns={6}
-            data={carouselItems}
-            keyExtractor={(item,index) => index.toString()}
-            renderItem={_menuList}
-          />
-        </ScrollView> */}
-      </View>
+          <Text style={{borderWidth:0.5,width:80,borderRadius:10,textAlign:"center",textAlignVertical:"center"}}>{value}</Text>
+          
+          <TouchableOpacity style={{
+            height:40,
+            width:40,
+            borderRadius:10,
+            justifyContent:"center",
+            alignItems:"center",
+            backgroundColor:"red",
+            }}
+            onPress={() => dispatch(tru(value - 1))}
+            >
+            <Text>-</Text>
+          </TouchableOpacity>
+        </View> */}
 
-      {/* Body */}
-      {/* <View style={{marginTop:10,}}>
-        <Text>dsjhfgdfjhsgjklf</Text>
-      </View> */}
+        {/* Menu */}
+        <View style={{marginTop:10,}}>
+          <MenuTowRow/>
+        </View>
     </SafeAreaView>
   );
 }

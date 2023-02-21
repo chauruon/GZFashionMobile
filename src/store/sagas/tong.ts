@@ -14,10 +14,10 @@ export function* tong(action: Action) {
   yield takeLatest(typeAcctionBanner.TONG_SUCCESS, callTong);
 }
 
-function* callTru(action:any): Generator<any, void, unknown>{
+function* callTru(action:any){
   console.log('callTru action: ', action);
   try {
-    yield put({type: "TONG_SUCCESS", action});
+    yield put({type: typeAcctionBanner.TRU_SUCCESS, action});
   } catch (e) {
     console.log('callTru e: ', e);
   }

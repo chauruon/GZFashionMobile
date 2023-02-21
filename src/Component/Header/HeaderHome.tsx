@@ -50,21 +50,17 @@ const styles = StyleSheet.create({
   container:{
     width:SIZE.width,
     height:50,
-    // backgroundColor:"red",
     flexDirection:"row",
     paddingHorizontal:10,
   },
   numberBag:{
     width:"100%",
     height:"100%",
-    // backgroundColor:"#FCB900",
     justifyContent:"center",
     alignItems:"center",
     zIndex:100,
     paddingBottom:20,
     paddingLeft:17,
-    // top:10,
-    // right:5,
     position:"absolute",
   },
   numberToBag:{
@@ -88,11 +84,9 @@ const styles = StyleSheet.create({
     ...TEXT.bold,
   },
   button:{
-    // flex:1,
     width:40,
     height:"100%",
     justifyContent:"center",
     alignItems:"center",
-    // backgroundColor:"#32C079",
   }
 })

@@ -1,6 +1,7 @@
 import { call, put, takeLatest, takeEvery, all } from "redux-saga/effects";
 import { getBannerNotify } from "../api";
 import { ActionBanner } from "../reducers/BannerNotify";
+import { Action } from "../reducers/tong";
 import { typeAcctionBanner } from "../types/typeAcctionBanner";
 
 //DEMO CÁCH LÀM
@@ -30,22 +31,21 @@ import { typeAcctionBanner } from "../types/typeAcctionBanner";
 //   }
 // }
 
+interface IO {
+  data: BANNER,
+}
+interface BANNER {
+  banner: Array<object>,
+}
 
 export function* BannerNotify() {
   yield takeLatest(typeAcctionBanner.GET_BANNER, callBannerNotify);
-}
-interface IO {
-  data: Object,
 }
 
 function* callBannerNotify():any {
   try {
     const bannerNotify:IO = yield getBannerNotify();
-    if (bannerNotify.data) {
-      console.log('bannerNotify.data: ', bannerNotify.data);
-      yield put({ type: typeAcctionBanner.GET_BANNER_SUCCESS, payload: bannerNotify.data });
-    }
-
+    yield put({type: typeAcctionBanner.GET_BANNER_SUCCESS, payload: bannerNotify.data});
   } catch (err) {
     yield put({ type: typeAcctionBanner.GET_BANNER_ERROR, err});
   }
