@@ -136,7 +136,7 @@ export const TEXT = StyleSheet.create({
 });
 export const SHADOWS = StyleSheet.create({
   sh: {
-    shadowColor: "#000",
+    shadowColor: "rgba(129,129,129,0.3)",
     shadowOffset: {
       width: 0,
       height: 1,

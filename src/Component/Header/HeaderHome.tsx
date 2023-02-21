@@ -49,7 +49,7 @@ export const HeaderHome = ({
 const styles = StyleSheet.create({
   container:{
     width:SIZE.width,
-    height:50,
+    height:35,
     flexDirection:"row",
     paddingHorizontal:10,
   },

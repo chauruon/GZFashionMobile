@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -12,6 +13,7 @@ import {
   FlatList,
 } from "react-native";
 import { COLOR, SHADOWS, SIZE, TEXT } from "../../theme";
+import * as configs from "../../configs"
 
 const food1 = require("../../assets/image/food1.jpg");
 const food2 = require("../../assets/image/food2.jpg");
@@ -49,27 +51,64 @@ const carouselItems= [
 ];
 
 export const MenuTowRow = () => {
+  const [menuCate,setMenuCate] = useState([]);
+  useEffect(()=>{
+    callApiMenu();
+  },[])
+  const callApiMenu = async () => {
+    const category = await axios.get(`${configs.URL_API}categories` );
+    setMenuCate(category.data);
+  }
 
   const _menuList = ({ item, index }:{item:any,index:number}) => {
     return (
-      <TouchableOpacity style={{flexDirection:"row",}} activeOpacity={0.8} key={`${index}-cart`}>
+      <TouchableOpacity style={{
+        flexDirection:"row",
+        backgroundColor:"#fff",
+      
+        // borderWidth:0.1,
+        // borderRadius:9,
+        // marginRight:2,
+
+      }} activeOpacity={0.65}  key={`${index}-cart`}>
         <View style={{
           margin:4,
-          width:SIZE.width/7 + 1
+          width:SIZE.width/7 + 1,
+          backgroundColor:"#fff",
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 4,
+          },
+          shadowOpacity: 0.32,
+          shadowRadius: 5.46,
+          elevation: 3,
+          borderRadius:9,
         }}>
           <View style={{
             alignItems:"center",
             width:"100%",
             padding:5,
             borderRadius:9,
-            ...SHADOWS.sh,
+            
+            // shadowColor: "#000",
+            // shadowOffset: {
+            //   width: 0,
+            //   height: 1,
+            // },
+            // shadowOpacity: 0.22,
+            // shadowRadius: 2.22,
+
+            // elevation: 3,
+
+
             backgroundColor: COLOR.white,
           }}>
-            <Image style={{
+            {/* <Image style={{
               height:35,
               width:35,
             }}
-              source={item.image}/>
+              source={item.image}/> */}
             
             <Text numberOfLines={2} style={{
               textAlign:"center",
@@ -93,12 +132,12 @@ export const MenuTowRow = () => {
       scrollEnabled={true}>
       <FlatList
         style={{paddingRight:5}}
-        key={carouselItems.length + "cate"}
+        key={menuCate.length + "cate"}
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         numColumns={6}
-        keyExtractor={(item) => item.id.toString()}
-        data={carouselItems}
+        keyExtractor={(item) => item.id}
+        data={menuCate}
         scrollEnabled={false}
         renderItem={_menuList}
       />
