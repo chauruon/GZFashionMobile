@@ -21,32 +21,56 @@ import { useDispatch, useSelector } from "react-redux";
 import { tong, tru } from "../../store/actions/tong";
 import { FetchBannerNotify } from "../../store/actions/banner";
 import { MenuTowRow } from "../../Component/Menu/MenuTowRow";
-import { HightLight } from "../../Component/CateHightLight/HightLight ";
+import { HightLight, ImageArr } from "../../Component/CateHightLight/HightLight ";
 import { Propose } from "../../Component/Propose/Propose";
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import { SwipeableList } from "../../Component/Swipeable/SwipeableList";
+import { Swipe } from "../../Component/Swipeable/Swipe";
 
 export const Home = () => {
   const ref = React.createRef<any>();
-  const [counter,setCounter] = useState(0);
   const dispatch = useDispatch();
+
+  const [counter,setCounter] = useState(0);
+
   const value = useSelector((state: any) => state.tong.giaTri)
+
+
+
+
+ 
+
 
   return (
     <SafeAreaView style={{backgroundColor:COLOR.white,flex:1}}>
       <HeaderHome />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Carousel */}
-        <BannerCarousel/>
+        {/* <BannerCarousel/> */}
+
         {/* Menu */}
-        <View style={{marginTop:10,}}>
+        {/* <View style={{marginTop:10,}}>
           <MenuTowRow/>
-        </View>
+        </View> */}
+
         {/* Body */}
-        <View style={{marginTop:10,marginLeft:5}}>
+        {/* <View style={{marginTop:10,marginLeft:5}}>
           <Text style={styles.featuredProducts}>Nổi bật</Text>
           <HightLight/>
           <Text style={[styles.featuredProducts,{marginTop:10,}]}>Đề xuất</Text>
           <Propose/>
-        </View>
+        </View> */}
+
+        
+
+
+        <Swipe/>
+
+
+
+
+
+
       </ScrollView>
     </SafeAreaView>
   );

@@ -12,6 +12,11 @@ const iconShoppingBag = require("../assets/icons/iconShoppingBag.png")
 const iconSlider = require("../assets/icons/iconSlider.png")
 const iconT_Shirt = require("../assets/icons/iconT_Shirt.png")
 const iconTrousers = require("../assets/icons/iconTrousers.png")
+const iconStar_selected = require("../assets/icons/star_selected.png")
+const iconStart = require("../assets/icons/star.png")
+const iconEdit = require("../assets/icons/iconEdit.png")
+const iconDeleteTrash = require("../assets/icons/iconDeleteTrash.png")
+
 
 export const Icons = {
   iconHeart,
@@ -28,4 +33,8 @@ export const Icons = {
   iconSlider,
   iconT_Shirt,
   iconTrousers,
+  iconStar_selected,
+  iconStart,
+  iconEdit,
+  iconDeleteTrash,
 }
